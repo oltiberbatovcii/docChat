@@ -14,6 +14,10 @@ class Settings(BaseSettings):
     # Origins allowed to call the API from a browser (the Vite dev server by default)
     cors_origins: list[str] = ["http://localhost:5173"]
 
+    # Chunking: size and overlap are in characters
+    chunk_size: int = 800
+    chunk_overlap: int = 150
+
 
 @lru_cache
 def get_settings() -> Settings:
