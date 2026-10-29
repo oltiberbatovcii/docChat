@@ -1,6 +1,7 @@
 """App settings, loaded from environment variables / the .env file."""
 
 from functools import lru_cache
+from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -17,6 +18,13 @@ class Settings(BaseSettings):
     # Chunking: size and overlap are in characters
     chunk_size: int = 800
     chunk_overlap: int = 150
+
+    # Embeddings + vector store
+    embedding_model: str = "all-MiniLM-L6-v2"
+    chroma_dir: Path = Path("data/chroma")
+
+    # Uploads: reject anything bigger before parsing it
+    max_upload_mb: int = 20
 
 
 @lru_cache
