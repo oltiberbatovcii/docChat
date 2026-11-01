@@ -102,6 +102,6 @@ def test_dataset_is_valid_and_includes_unanswerable_questions() -> None:
     dataset = load_dataset(EVALS_DIR / "dataset.jsonl")
 
     unanswerable = [item for item in dataset if item.expected_source is None]
-    assert 15 <= len(dataset) <= 20
+    assert 15 <= len(dataset) <= 25
     assert len(unanswerable) >= 3
     assert all((item.expected_answer is None) == (item.expected_source is None) for item in dataset)

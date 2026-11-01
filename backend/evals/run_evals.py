@@ -13,7 +13,7 @@ from pydantic import BaseModel
 
 from app.api.deps import get_generate
 from app.core.config import get_settings
-from app.prompts.answer_prompts import REFUSAL
+from app.prompts.answer_prompts import PROMPT_V1, PROMPTS, REFUSAL, PromptTemplate
 from app.services.embeddings import embed_texts
 from app.services.ingestion import ingest_pdf
 from app.services.rag import GenerateFn, answer_question
@@ -81,10 +81,14 @@ def judge_answer(question: str, expected: str, answer: str, generate: GenerateFn
 
 
 def evaluate_item(
-    item: EvalItem, store: VectorStore, generate: GenerateFn, top_k: int
+    item: EvalItem,
+    store: VectorStore,
+    generate: GenerateFn,
+    top_k: int,
+    prompt: PromptTemplate = PROMPT_V1,
 ) -> ItemResult:
     results = store.query(item.question, top_k)
-    answer = answer_question(item.question, top_k, store, generate).answer
+    answer = answer_question(item.question, top_k, store, generate, prompt).answer
     refused = answer.startswith(REFUSAL)
     retrieved_pages = [result.page for result in results]
 
@@ -155,6 +159,7 @@ def main() -> None:
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--chunk-size", type=int, default=settings.chunk_size)
     parser.add_argument("--chunk-overlap", type=int, default=settings.chunk_overlap)
+    parser.add_argument("--prompt", choices=sorted(PROMPTS), default=settings.prompt_version)
     args = parser.parse_args()
     # The label becomes part of a filename
     if not re.fullmatch(r"[\w-]+", args.label):
@@ -168,7 +173,7 @@ def main() -> None:
         results = []
         for number, item in enumerate(dataset, start=1):
             print(f"[{number}/{len(dataset)}] {item.question}", flush=True)
-            results.append(evaluate_item(item, store, generate, args.top_k))
+            results.append(evaluate_item(item, store, generate, args.top_k, PROMPTS[args.prompt]))
 
     summary = summarize(results)
     print_report(results, summary)
@@ -178,6 +183,7 @@ def main() -> None:
     output = RESULTS_DIR / f"{timestamp}_{args.label}.json"
     config = {
         "model": settings.ollama_model,
+        "prompt": args.prompt,
         "top_k": args.top_k,
         "chunk_size": args.chunk_size,
         "chunk_overlap": args.chunk_overlap,

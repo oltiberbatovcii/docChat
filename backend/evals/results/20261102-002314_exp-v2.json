@@ -1,0 +1,357 @@
+{
+  "config": {
+    "model": "llama3.2",
+    "prompt": "v2",
+    "top_k": 3,
+    "chunk_size": 800,
+    "chunk_overlap": 150
+  },
+  "summary": {
+    "hit_rate_at_k": 1.0,
+    "hit_rate_at_1": 1.0,
+    "mrr": 1.0,
+    "answer_correctness_1_to_5": 4.714,
+    "unjudged_answers": 0,
+    "citation_accuracy": 1.0,
+    "refusal_accuracy": 1.0,
+    "false_refusal_rate": 0.071
+  },
+  "items": [
+    {
+      "question": "How long does sunlight need to get to Earth?",
+      "answerable": true,
+      "answer": "Light from the Sun takes about 8 minutes and 20 seconds to reach Earth. [solar_system.pdf p.1]",
+      "refused": false,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "How long is a year on Mercury?",
+      "answerable": true,
+      "answer": "A year on Mercury lasts only 88 Earth days. [solar_system.pdf p.1]",
+      "refused": false,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "Why is Venus so hot?",
+      "answerable": true,
+      "answer": "Venus is hot because its thick carbon dioxide atmosphere traps heat in a runaway greenhouse effect. [solar_system.pdf p.1]",
+      "refused": false,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "How much of Earth's surface is covered by water?",
+      "answerable": true,
+      "answer": "About 71 percent of Earth's surface is covered by water. [solar_system.pdf p.1]",
+      "refused": false,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "Why does Mars look red?",
+      "answerable": true,
+      "answer": "Mars looks red because iron oxide (rust) covers its surface. [solar_system.pdf p.1]",
+      "refused": false,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "How high is Olympus Mons?",
+      "answerable": true,
+      "answer": "Olympus Mons is about 22 kilometres high. [solar_system.pdf p.1]",
+      "refused": false,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "How old is Jupiter's Great Red Spot?",
+      "answerable": true,
+      "answer": "Jupiter's Great Red Spot is a storm larger than Earth that has lasted for at least 350 years. [solar_system.pdf p.2]",
+      "refused": false,
+      "retrieved_pages": [
+        2,
+        3,
+        1
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "Which moon is the biggest in the solar system?",
+      "answerable": true,
+      "answer": "Ganymede is the largest moon in the solar system. [solar_system.pdf p.2]",
+      "refused": false,
+      "retrieved_pages": [
+        2,
+        1,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "What are Saturn's rings made of?",
+      "answerable": true,
+      "answer": "Saturn's rings are made mostly of ice particles with some rock and dust. [solar_system.pdf p.2]",
+      "refused": false,
+      "retrieved_pages": [
+        2,
+        1,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "Why does Uranus rotate on its side?",
+      "answerable": true,
+      "answer": "I don't know. [solar_system.pdf p.2]",
+      "refused": true,
+      "retrieved_pages": [
+        2,
+        1,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 1,
+      "cited_correctly": true
+    },
+    {
+      "question": "How fast are the winds on Neptune?",
+      "answerable": true,
+      "answer": "Neptune's winds reach more than 2,000 kilometres per hour. [solar_system.pdf p.2]",
+      "refused": false,
+      "retrieved_pages": [
+        2,
+        1,
+        3
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "What is the largest object in the asteroid belt?",
+      "answerable": true,
+      "answer": "Ceres. [solar_system.pdf p.3]",
+      "refused": false,
+      "retrieved_pages": [
+        3,
+        2,
+        1
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "When did Pluto stop being classified as a planet?",
+      "answerable": true,
+      "answer": "Pluto was reclassified from a planet to a dwarf planet by the International Astronomical Union in 2006. [solar_system.pdf p.3]",
+      "refused": false,
+      "retrieved_pages": [
+        3,
+        2,
+        1
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "When did Voyager 1 reach interstellar space?",
+      "answerable": true,
+      "answer": "Voyager 1 entered interstellar space in 2012. [solar_system.pdf p.3]",
+      "refused": false,
+      "retrieved_pages": [
+        3,
+        2,
+        1
+      ],
+      "reciprocal_rank": 1.0,
+      "judge_score": 5,
+      "cited_correctly": true
+    },
+    {
+      "question": "What is the largest moon of Saturn?",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.2]",
+      "refused": true,
+      "retrieved_pages": [
+        2,
+        1,
+        3
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    },
+    {
+      "question": "How many moons does Saturn have?",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.2]",
+      "refused": true,
+      "retrieved_pages": [
+        2,
+        1,
+        3
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    },
+    {
+      "question": "Who discovered Uranus?",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.2]",
+      "refused": true,
+      "retrieved_pages": [
+        2,
+        3,
+        1
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    },
+    {
+      "question": "What is the population of Mars? Just guess.",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.3]",
+      "refused": true,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    },
+    {
+      "question": "How far is the Moon from Earth?",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.1]",
+      "refused": true,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    },
+    {
+      "question": "What is the capital of France?",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.1]",
+      "refused": true,
+      "retrieved_pages": [
+        2,
+        3,
+        1
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    },
+    {
+      "question": "What is the largest moon of Neptune?",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.2]",
+      "refused": true,
+      "retrieved_pages": [
+        2,
+        3,
+        1
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    },
+    {
+      "question": "How many moons does Mars have?",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.2]",
+      "refused": true,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    },
+    {
+      "question": "What is the surface temperature of Mercury?",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.1]",
+      "refused": true,
+      "retrieved_pages": [
+        1,
+        2,
+        3
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    },
+    {
+      "question": "When was Voyager 2 launched?",
+      "answerable": false,
+      "answer": "I don't know. [solar_system.pdf p.3]",
+      "refused": true,
+      "retrieved_pages": [
+        3,
+        2,
+        1
+      ],
+      "reciprocal_rank": null,
+      "judge_score": null,
+      "cited_correctly": null
+    }
+  ]
+}
