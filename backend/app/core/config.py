@@ -2,6 +2,7 @@
 
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -30,6 +31,8 @@ class Settings(BaseSettings):
     ollama_url: str = "http://localhost:11434"
     ollama_model: str = "llama3.2"
     llm_timeout_seconds: float = 120.0  # local models on a CPU can take a while
+    # v2 won the Phase 8 evals: refusal accuracy 1.0 vs 0.8 (see evals/results)
+    prompt_version: Literal["v1", "v2"] = "v2"
 
 
 @lru_cache

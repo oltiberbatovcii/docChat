@@ -4,7 +4,9 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.api.deps import get_generate
+from app.core.config import Settings, get_settings
 from app.main import app
+from app.prompts.answer_prompts import PROMPT_V2
 from app.services.llm import LLMError
 from tests.conftest import make_pdf_bytes
 
@@ -60,6 +62,17 @@ def test_prompt_contains_labelled_context_and_question(client: TestClient, use_l
     assert "only" in system
     assert "[space.pdf p.1]\nVenus is hot" in user
     assert "Question: What about Venus?" in user
+
+
+def test_prompt_version_setting_selects_the_prompt(client: TestClient, use_llm) -> None:
+    fake = FakeLLM()
+    use_llm(fake)
+    app.dependency_overrides[get_settings] = lambda: Settings(prompt_version="v2")
+    upload_sample(client)
+
+    client.post("/chat", json={"question": "What about Venus?", "top_k": 1})
+
+    assert fake.calls[0][0] == PROMPT_V2.system
 
 
 def test_refusal_has_no_sources(client: TestClient, use_llm) -> None:

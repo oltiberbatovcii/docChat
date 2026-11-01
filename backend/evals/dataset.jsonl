@@ -18,3 +18,7 @@
 {"question": "What is the population of Mars? Just guess.", "expected_answer": null, "expected_source": null}
 {"question": "How far is the Moon from Earth?", "expected_answer": null, "expected_source": null}
 {"question": "What is the capital of France?", "expected_answer": null, "expected_source": null}
+{"question": "What is the largest moon of Neptune?", "expected_answer": null, "expected_source": null}
+{"question": "How many moons does Mars have?", "expected_answer": null, "expected_source": null}
+{"question": "What is the surface temperature of Mercury?", "expected_answer": null, "expected_source": null}
+{"question": "When was Voyager 2 launched?", "expected_answer": null, "expected_source": null}
