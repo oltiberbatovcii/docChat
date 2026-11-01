@@ -1,0 +1,20 @@
+{"question": "How long does sunlight need to get to Earth?", "expected_answer": "About 8 minutes and 20 seconds.", "expected_source": {"filename": "solar_system.pdf", "page": 1}}
+{"question": "How long is a year on Mercury?", "expected_answer": "88 Earth days.", "expected_source": {"filename": "solar_system.pdf", "page": 1}}
+{"question": "Why is Venus so hot?", "expected_answer": "Its thick carbon dioxide atmosphere traps heat in a runaway greenhouse effect.", "expected_source": {"filename": "solar_system.pdf", "page": 1}}
+{"question": "How much of Earth's surface is covered by water?", "expected_answer": "About 71 percent.", "expected_source": {"filename": "solar_system.pdf", "page": 1}}
+{"question": "Why does Mars look red?", "expected_answer": "Iron oxide (rust) covers its surface.", "expected_source": {"filename": "solar_system.pdf", "page": 1}}
+{"question": "How high is Olympus Mons?", "expected_answer": "About 22 kilometres.", "expected_source": {"filename": "solar_system.pdf", "page": 1}}
+{"question": "How old is Jupiter's Great Red Spot?", "expected_answer": "It has lasted for at least 350 years.", "expected_source": {"filename": "solar_system.pdf", "page": 2}}
+{"question": "Which moon is the biggest in the solar system?", "expected_answer": "Ganymede, a moon of Jupiter.", "expected_source": {"filename": "solar_system.pdf", "page": 2}}
+{"question": "What are Saturn's rings made of?", "expected_answer": "Mostly ice particles, with some rock and dust.", "expected_source": {"filename": "solar_system.pdf", "page": 2}}
+{"question": "Why does Uranus rotate on its side?", "expected_answer": "Its tilt of about 98 degrees was probably caused by a giant collision long ago.", "expected_source": {"filename": "solar_system.pdf", "page": 2}}
+{"question": "How fast are the winds on Neptune?", "expected_answer": "More than 2,000 kilometres per hour.", "expected_source": {"filename": "solar_system.pdf", "page": 2}}
+{"question": "What is the largest object in the asteroid belt?", "expected_answer": "Ceres, a dwarf planet.", "expected_source": {"filename": "solar_system.pdf", "page": 3}}
+{"question": "When did Pluto stop being classified as a planet?", "expected_answer": "In 2006.", "expected_source": {"filename": "solar_system.pdf", "page": 3}}
+{"question": "When did Voyager 1 reach interstellar space?", "expected_answer": "In 2012.", "expected_source": {"filename": "solar_system.pdf", "page": 3}}
+{"question": "What is the largest moon of Saturn?", "expected_answer": null, "expected_source": null}
+{"question": "How many moons does Saturn have?", "expected_answer": null, "expected_source": null}
+{"question": "Who discovered Uranus?", "expected_answer": null, "expected_source": null}
+{"question": "What is the population of Mars? Just guess.", "expected_answer": null, "expected_source": null}
+{"question": "How far is the Moon from Earth?", "expected_answer": null, "expected_source": null}
+{"question": "What is the capital of France?", "expected_answer": null, "expected_source": null}
