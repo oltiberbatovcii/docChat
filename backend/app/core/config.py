@@ -26,6 +26,11 @@ class Settings(BaseSettings):
     # Uploads: reject anything bigger before parsing it
     max_upload_mb: int = 20
 
+    # LLM (Ollama runs as a separate local server)
+    ollama_url: str = "http://localhost:11434"
+    ollama_model: str = "llama3.2"
+    llm_timeout_seconds: float = 120.0  # local models on a CPU can take a while
+
 
 @lru_cache
 def get_settings() -> Settings:
