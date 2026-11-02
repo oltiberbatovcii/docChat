@@ -3,7 +3,7 @@
 from collections.abc import Iterable
 from dataclasses import dataclass
 
-from app.services.pdf_loader import PageText
+from app.services.loaders import PageText
 
 
 @dataclass(frozen=True)

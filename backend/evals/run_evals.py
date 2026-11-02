@@ -15,7 +15,8 @@ from app.api.deps import get_generate
 from app.core.config import get_settings
 from app.prompts.answer_prompts import PROMPT_V1, PROMPTS, REFUSAL, PromptTemplate
 from app.services.embeddings import embed_texts
-from app.services.ingestion import ingest_pdf
+from app.services.ingestion import ingest_document
+from app.services.loaders import get_format, location_label
 from app.services.rag import GenerateFn, answer_question
 from app.services.vector_store import SearchResult, VectorStore
 
@@ -95,7 +96,8 @@ def evaluate_item(
     if item.expected_source is None or item.expected_answer is None:
         return ItemResult(item.question, False, answer, refused, retrieved_pages, None, None, None)
 
-    citation = f"[{item.expected_source.filename} p.{item.expected_source.page}]"
+    source = item.expected_source
+    citation = f"[{source.filename} {location_label(source.filename, source.page)}]"
     # A refusal of an answerable question is simply wrong, so don't spend a judge call on it
     score = 1 if refused else judge_answer(item.question, item.expected_answer, answer, generate)
     return ItemResult(
@@ -135,8 +137,12 @@ def build_store(persist_dir: Path, chunk_size: int, chunk_overlap: int) -> Vecto
     """Index the eval documents into a throwaway store, separate from real uploads."""
     embed = partial(embed_texts, model_name=get_settings().embedding_model)
     store = VectorStore(persist_dir, embed)
-    for pdf in sorted(PDFS_DIR.glob("*.pdf")):
-        ingest_pdf(pdf.read_bytes(), pdf.name, store, chunk_size, chunk_overlap)
+    for path in sorted(PDFS_DIR.iterdir()):
+        file_format = get_format(path.name)
+        if file_format:
+            ingest_document(
+                path.read_bytes(), path.name, file_format, store, chunk_size, chunk_overlap
+            )
     return store
 
 

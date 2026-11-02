@@ -1,24 +1,28 @@
-"""Ingestion pipeline: PDF bytes -> pages -> chunks -> vector store."""
+"""Ingestion pipeline: file bytes -> pages/sections -> chunks -> vector store."""
 
 import hashlib
-import io
 
 from app.services.chunking import chunk_pages
-from app.services.pdf_loader import load_pdf
+from app.services.loaders import FileFormat
 from app.services.vector_store import DocumentInfo, VectorStore
 
 
 class NoTextError(ValueError):
-    """The PDF has no extractable text (blank, or scanned images without OCR)."""
+    """The document has no extractable text (empty, or scanned images without OCR)."""
 
 
-def ingest_pdf(
-    data: bytes, filename: str, store: VectorStore, chunk_size: int, chunk_overlap: int
+def ingest_document(
+    data: bytes,
+    filename: str,
+    file_format: FileFormat,
+    store: VectorStore,
+    chunk_size: int,
+    chunk_overlap: int,
 ) -> DocumentInfo:
     # Content hash as ID: uploading the same file twice replaces it instead of duplicating it
     document_id = hashlib.sha256(data).hexdigest()[:16]
 
-    pages = load_pdf(io.BytesIO(data))
+    pages = file_format.load(data)
     if not pages:
         raise NoTextError(f"{filename} has no extractable text")
 

@@ -13,4 +13,5 @@ class SearchResultOut(BaseModel):
     text: str
     filename: str
     page: int
+    location: str  # citation-ready, e.g. "p.3" for a PDF or "section 3" for Word
     score: float
