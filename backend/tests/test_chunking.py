@@ -1,7 +1,7 @@
 import pytest
 
 from app.services.chunking import chunk_pages, split_text
-from app.services.pdf_loader import PageText
+from app.services.loaders import PageText
 
 
 def test_empty_text_gives_no_chunks() -> None:

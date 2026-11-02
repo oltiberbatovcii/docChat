@@ -4,6 +4,7 @@ from fastapi import APIRouter
 
 from app.api.deps import VectorStoreDep
 from app.schemas.search import SearchRequest, SearchResultOut
+from app.services.loaders import location_label
 
 router = APIRouter(prefix="/search", tags=["search"])
 
@@ -13,7 +14,11 @@ def search(request: SearchRequest, store: VectorStoreDep) -> list[SearchResultOu
     results = store.query(request.query, request.top_k)
     return [
         SearchResultOut(
-            text=result.text, filename=result.filename, page=result.page, score=result.score
+            text=result.text,
+            filename=result.filename,
+            page=result.page,
+            location=location_label(result.filename, result.page),
+            score=result.score,
         )
         for result in results
     ]
