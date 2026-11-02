@@ -47,7 +47,9 @@ def test_chat_returns_answer_with_sources(client: TestClient, use_llm) -> None:
     assert response.status_code == 200
     assert response.json() == {
         "answer": "Venus is the hottest [space.pdf p.1]",
-        "sources": [{"filename": "space.pdf", "page": 1, "snippet": "Venus is hot"}],
+        "sources": [
+            {"filename": "space.pdf", "page": 1, "location": "p.1", "snippet": "Venus is hot"}
+        ],
     }
 
 
