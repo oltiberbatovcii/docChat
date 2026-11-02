@@ -1,0 +1,40 @@
+services:
+  backend:
+    build: ./backend
+    # 127.0.0.1: reachable from this machine only, not from others on your network
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - path: backend/.env
+        required: false
+    environment:
+      # Ollama runs on the host. Inside a container, "localhost" means the container itself.
+      OLLAMA_URL: http://host.docker.internal:11434
+    # Docker Desktop provides host.docker.internal; this line makes it work on Linux too
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - backend-data:/app/data # uploaded documents (Chroma DB)
+      - model-cache:/app/.cache/huggingface # embedding model, so it isn't re-downloaded
+    healthcheck:
+      # The slim image has no curl, so use Python's standard library
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8000
+    ports:
+      - "127.0.0.1:5173:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  backend-data:
+  model-cache:

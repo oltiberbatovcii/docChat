@@ -12,8 +12,19 @@ dependencies = [
     "pypdf>=6.21.4",
     "python-multipart>=0.0.32",
     "sentence-transformers>=6.2.0",
+    # Listed directly (sentence-transformers already needs it) so it can come from the CPU index
+    "torch>=2.15.0",
     "uvicorn[standard]>=0.54.0",
 ]
+
+# CPU-only PyTorch: on Linux (Docker) the default PyPI build bundles several GB of GPU libraries
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
 
 [dependency-groups]
 dev = [
