@@ -10,6 +10,7 @@ export interface DocumentInfo {
 export interface Source {
   filename: string
   page: number
+  location: string // e.g. "p.3" for a PDF or "section 3" for Word
   snippet: string
 }
 

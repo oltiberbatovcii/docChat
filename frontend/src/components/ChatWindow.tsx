@@ -38,7 +38,7 @@ export function ChatWindow() {
     <section className="chat" aria-label="Chat">
       <div className="messages" aria-live="polite">
         {messages.length === 0 && !isLoading && (
-          <p className="hint">Upload a PDF, then ask a question about it.</p>
+          <p className="hint">Upload a document (PDF, Word, Markdown or text), then ask a question about it.</p>
         )}
         {messages.map((message, index) => (
           <MessageBubble key={index} message={message} />

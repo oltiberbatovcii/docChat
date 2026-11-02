@@ -13,7 +13,7 @@ export function SourceList({ sources }: SourceListProps) {
         {sources.map((source, index) => (
           <li key={index}>
             <strong>
-              {source.filename} p.{source.page}
+              {source.filename} {source.location}
             </strong>
             <p>{source.snippet}…</p>
           </li>

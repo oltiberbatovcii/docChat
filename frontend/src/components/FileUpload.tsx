@@ -2,6 +2,9 @@ import { useState } from 'react'
 import type { ChangeEvent } from 'react'
 import { uploadDocument } from '../api/client'
 
+// Only filters the file picker; the backend is what actually enforces the allowed formats
+const ACCEPTED_FORMATS = '.pdf,.docx,.md,.txt'
+
 interface FileUploadProps {
   onUploaded: () => void
 }
@@ -31,10 +34,10 @@ export function FileUpload({ onUploaded }: FileUploadProps) {
   return (
     <div className="upload">
       <label className={`button ${isUploading ? 'is-disabled' : ''}`}>
-        {isUploading ? 'Uploading…' : 'Upload PDF'}
+        {isUploading ? 'Uploading…' : 'Upload document'}
         <input
           type="file"
-          accept=".pdf,application/pdf"
+          accept={ACCEPTED_FORMATS}
           onChange={handleChange}
           disabled={isUploading}
           hidden
