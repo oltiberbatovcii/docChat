@@ -14,8 +14,9 @@ venv/
 build/
 dist/
 
-# --- Personal learning notes (kept local only) ---
+# --- Personal notes and project plan (kept local only) ---
 docs/
+CLAUDE.md
 
 # --- App data (uploaded PDFs + Chroma DB files) ---
 backend/data/
