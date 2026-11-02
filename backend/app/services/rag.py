@@ -4,6 +4,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 
 from app.prompts.answer_prompts import PROMPT_V1, REFUSAL, PromptTemplate
+from app.services.loaders import location_label
 from app.services.vector_store import SearchResult, VectorStore
 
 GenerateFn = Callable[[str, str], str]  # (system prompt, user prompt) -> reply
@@ -15,6 +16,7 @@ SNIPPET_LENGTH = 200
 class Source:
     filename: str
     page: int
+    location: str
     snippet: str
 
 
@@ -26,7 +28,11 @@ class RagAnswer:
 
 def build_context(results: list[SearchResult]) -> str:
     """Label each chunk with its citation, so the LLM can copy the label into its answer."""
-    return "\n\n".join(f"[{r.filename} p.{r.page}]\n{r.text}" for r in results)
+    return "\n\n".join(f"[{citation(r)}]\n{r.text}" for r in results)
+
+
+def citation(result: SearchResult) -> str:
+    return f"{result.filename} {location_label(result.filename, result.page)}"
 
 
 def answer_question(
@@ -47,5 +53,8 @@ def answer_question(
     # A refusal didn't use the retrieved chunks, so citing them would be misleading
     if answer.startswith(REFUSAL):
         return RagAnswer(answer=answer, sources=[])
-    sources = [Source(r.filename, r.page, r.text[:SNIPPET_LENGTH]) for r in results]
+    sources = [
+        Source(r.filename, r.page, location_label(r.filename, r.page), r.text[:SNIPPET_LENGTH])
+        for r in results
+    ]
     return RagAnswer(answer=answer, sources=sources)
